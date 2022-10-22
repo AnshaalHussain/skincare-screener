@@ -8,4 +8,11 @@ driver = webdriver.Chrome(path)
 
 driver.get(website)
 
+matches = driver.find_elements_by_class_name("hashtag")
+
+print("matches", matches)
+
+for match in matches:
+    print(match.text)
+
 driver.quit()
