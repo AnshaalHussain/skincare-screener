@@ -13,6 +13,6 @@ matches = driver.find_elements_by_class_name("hashtag")
 print("matches", matches)
 
 for match in matches:
-    print(match.text)
+    print(match.text.split())
 
 driver.quit()
