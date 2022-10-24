@@ -1,30 +1,42 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import queries from "../services/queries/queries";
 
 const Input = () => {
   const [inputText, setInputText] = useState("");
   const [responseData, setResponseData] = useState("");
 
-  const url = "http://127.0.0.1:5000";
-
   const onChange = (e) => {
     setInputText(e.target.value);
   };
 
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
-    setInputText("");
 
-    const res = await axios
-      .get(url)
+    queries
+      .getHomePage()
       .then((res) => {
-        console.log("res", res.data);
+        setResponseData(res.data);
       })
       .catch((err) => {
         console.log("err", err);
       });
+  };
 
-    setResponseData(res);
+  const onSendText = (e) => {
+    e.preventDefault();
+
+    queries
+      .postHomeRoute(inputText)
+      .then((res) => {
+        console.log("post res", res.data);
+        setResponseData(res.data);
+        setInputText("");
+        console.log("responseData", responseData);
+      })
+      .catch((err) => {
+        console.log("err", err);
+      });
   };
 
   return (
@@ -35,6 +47,8 @@ const Input = () => {
         placeholder={"enter a product name"}
       />
       <button onClick={(e) => onSubmit(e)}>Send</button>
+      <button onClick={(e) => onSendText(e)}>Send Text</button>
+      <h1>{responseData || "none"}</h1>
     </div>
   );
 };

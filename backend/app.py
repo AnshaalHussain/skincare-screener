@@ -3,6 +3,7 @@ from views import views
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/")
@@ -12,8 +13,10 @@ def home():
 
 
 @app.route("/data", methods=['GET', 'POST'])
+@cross_origin()
 def data():
     if request.method == 'POST':
+        print(request.json['message'])
         return "this is the data page"
     else:
         return "this isn't the data page"
