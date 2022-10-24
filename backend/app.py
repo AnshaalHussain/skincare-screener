@@ -1,10 +1,12 @@
 from flask import Flask, request
 from views import views
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
 
 @app.route("/")
+@cross_origin()
 def home():
     return "this isnt not the home page"
 
