@@ -6,16 +6,22 @@ const Input = () => {
   const [inputText, setInputText] = useState("");
   const [responseData, setResponseData] = useState("");
 
+  useEffect(() => {
+    console.log("responseData", responseData);
+  }, [responseData]);
+
   const onChange = (e) => {
     setInputText(e.target.value);
   };
 
+  // GET
   const onSubmit = (e) => {
     e.preventDefault();
 
     queries
       .getHomePage()
       .then((res) => {
+        console.log("res GET", res);
         setResponseData(res.data);
       })
       .catch((err) => {
@@ -23,16 +29,15 @@ const Input = () => {
       });
   };
 
+  // POST
   const onSendText = (e) => {
     e.preventDefault();
-
     queries
       .postHomeRoute(inputText)
       .then((res) => {
-        console.log("post res", res.data);
+        console.log("res POST", res);
         setResponseData(res.data);
         setInputText("");
-        console.log("responseData", responseData);
       })
       .catch((err) => {
         console.log("err", err);
@@ -46,9 +51,9 @@ const Input = () => {
         value={inputText}
         placeholder={"enter a product name"}
       />
-      <button onClick={(e) => onSubmit(e)}>Send</button>
-      <button onClick={(e) => onSendText(e)}>Send Text</button>
-      <h1>{responseData || "none"}</h1>
+      <button onClick={(e) => onSubmit(e)}>Fetch Data</button>
+      <button onClick={(e) => onSendText(e)}>Send Data</button>
+      <div> {responseData ? <p>Response for: {responseData} </p> : null}</div>
     </div>
   );
 };
