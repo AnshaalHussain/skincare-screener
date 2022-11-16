@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from views import views
 from flask_cors import CORS, cross_origin
 
@@ -9,17 +9,18 @@ CORS(app)
 @app.route("/")
 @cross_origin()
 def home():
-    return "this isnt not the home page"
+    return "<h1>Home</h1>."
 
 
 @app.route("/data", methods=['GET', 'POST'])
 @cross_origin()
 def data():
+    if request.method == 'GET':
+        return "GET /data"
     if request.method == 'POST':
-        print(request.json['message'])
-        return "this is the data page"
-    else:
-        return "this isn't the data page"
+        # POST request body
+        post_data = request.json['message']
+        return post_data
 
 
 if __name__ == '__main__':
