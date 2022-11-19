@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import queries from "../services/queries/queries";
 import styled from "styled-components";
 import ProductsList from "./ProductsList";
@@ -69,18 +68,31 @@ const Input = () => {
 
   return (
     <div>
-      <input
-        onChange={(e) => onChange(e)}
-        value={inputText}
-        placeholder={"enter a product name"}
-      />
-      {/* <button onClick={(e) => onSubmit(e)}>Fetch Data</button> */}
-      <button onClick={(e) => onSendText(e)}>Send Data</button>
-      {/* <button onClick={() => GetSkincareAPI()}>Send SkinCare Api</button> */}
+      <InputWrapper>
+        <SearchWrapper>
+          <input
+            onChange={(e) => onChange(e)}
+            value={inputText}
+            placeholder={"enter a product name"}
+          />
+          {/* <button onClick={(e) => onSubmit(e)}>Fetch Data</button> */}
+          {/* <button onClick={() => GetSkincareAPI()}>Send SkinCare Api</button> */}
+          <button onClick={(e) => onSendText(e)}>Send Data</button>
+        </SearchWrapper>
 
-      <ProductsList responseData={responseData} />
+        <ProductsList responseData={responseData} />
+      </InputWrapper>
     </div>
   );
 };
 
 export default Input;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SearchWrapper = styled.div``;
