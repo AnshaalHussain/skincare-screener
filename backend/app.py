@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
+import requests
 from views import views
 from flask_cors import CORS, cross_origin
+
+from webscraping import product_search
 
 app = Flask(__name__)
 CORS(app)
@@ -16,11 +19,18 @@ def home():
 @cross_origin()
 def data():
     if request.method == 'GET':
-        return "GET /data"
+        return product_search("canmake cream cheek")
     if request.method == 'POST':
         # POST request body
         post_data = request.json['message']
-        return post_data
+        return product_search(post_data)
+
+
+@app.route("/skincare")
+@cross_origin()
+def skincare():
+    data = requests.get('https://skincare-api.herokuapp.com/products').content
+    return data
 
 
 if __name__ == '__main__':

@@ -16,7 +16,16 @@ const postHomeRoute = async (text) => {
   return data;
 };
 
+const getSkinCareDatabase = async () => {
+  const data = await axios.get(url + "/skincare", {
+    headers: { "Content-Type": "application/json" },
+  });
+  console.log(data);
+  return data;
+};
+
 export default {
   getHomePage,
   postHomeRoute,
+  getSkinCareDatabase,
 };
