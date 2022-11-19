@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
 const Circle = () => {
@@ -8,8 +8,20 @@ const Circle = () => {
   return (
     <div>
       <CircleWrapper>
-        {/* <PercentageWrapper>56</PercentageWrapper> */}
-        <CircularProgressbar value={percentage} text={`${percentage}%`} />;
+        <CircularProgressbar
+          value={percentage}
+          text={`${percentage}%`}
+          styles={buildStyles({
+            // rotation: 0.25,
+            strokeLinecap: "butt",
+            textSize: "1.8em",
+            pathTransitionDuration: 0.5,
+
+            textColor: "#0a7cff",
+
+            backgroundColor: "ightblue",
+          })}
+        />
       </CircleWrapper>
     </div>
   );
@@ -21,10 +33,9 @@ const CircleWrapper = styled.div`
   // background: lightblue;
   // border: solid #0a7cff 1px;
   // border-radius: 50%;
-  // width: 100px;
-  // height: 100px;
-  width: 50;
-  height: 50;
+  width: 100px;
+  height: 100px;
+
   // display: flex;
   // align-items: center;
   // justify-content: center;
