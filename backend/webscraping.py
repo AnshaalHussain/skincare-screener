@@ -10,22 +10,13 @@ def find_image(driver):
     image_div = driver.find_element_by_id(
         "product-main-image")
 
-    print("IMAGE DIV", image_div)
-
     src_tag = image_div.find_element(By.TAG_NAME, "img")
     src_image = src_tag.get_attribute('src')
 
     return src_image
 
 
-def find_ingredients():
-    website = 'https://incidecoder.com/products/canmake-mermaid-skin-gel-uv-spf-50-pa-01-clear'
-
-    path = '/Users/anshaal/Downloads/chromedriver'
-
-    driver = webdriver.Chrome(path)
-
-    driver.get(website)
+def find_ingredients(driver):
 
     ingredients_div = driver.find_element_by_id(
         "ingredlist-short")
@@ -39,7 +30,6 @@ def find_highlights(driver):
         "hashtag")
     for item in highlights_div:
         results_arr.append(item.text)
-        # print("IMAGE DIV", item.text)
 
     return results_arr
 
@@ -52,8 +42,6 @@ def product_search(search_query):
     driver = webdriver.Chrome(path)
 
     driver.get(website)
-
-    # print("SRC_TAG", src_tag.get_attribute('src'))
 
     # find html tag for search bar
     search = driver.find_element_by_id("query")
@@ -69,7 +57,6 @@ def product_search(search_query):
     results_arr = []
 
     for item in link:
-        # print("text", item.text, "url", item.get_attribute('href'))
         result_obj = {"title": item.text, "url": item.get_attribute('href')}
 
         try:
@@ -78,39 +65,15 @@ def product_search(search_query):
             )
             element.click()
             result_obj["product_img"] = find_image(driver)
+            result_obj["ingredients"] = find_ingredients(driver)
+            result_obj["highlights"] = find_highlights(driver)
             results_arr.append(result_obj)
             driver.back()
-            # image_div = driver.find_element_by_id("product-main-image")
-            # print("IMAGE DIV", image_div)
 
         except:
             driver.quit()
 
-        # try:
-        #     # image = WebDriverWait(driver, 10).until(
-        #     #     EC.presence_of_element_located((By.TAG_NAME, 'img'))
-        #     # )
-        #     # print("image", image.get_attribute('src'))
-        #     image_element = WebDriverWait(driver, 100).until(
-        #         EC.presence_of_element_located((By.ID, "product-main-image")))
-        #     print("image div", image_element)
-        # except:
-        #     driver.quit()
-
-    # image_locator = locate_with(By.TAG_NAME, "img").below(
-    #     {By.ID: "product-main-image"})
-
-    # image_div = driver.find_element_by_id("product-main-image")
-    # print("IMAGE DIV", image_div)
-    # img_src = image_div.find_elements(By.TAG_NAME, "img")
-
-    # for item in img_src:
-    #     print("image", item.get_attribute('src'))
-
-    # print("results arr", results_arr)
-    # time.sleep(1)
-    # time.sleep(5)
-    # print("RESULTS ARR", results_arr)
+    print("results", results_arr)
 
     driver.quit()
     return results_arr
@@ -144,6 +107,6 @@ def product_search(search_query):
 
 # product_search("hada labo")
 
-find_ingredients()
+# find_ingredients()
 
 # find_highlights()
