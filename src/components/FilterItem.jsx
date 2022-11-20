@@ -4,12 +4,22 @@ import styled from "styled-components";
 import { MdOutlineCheckBox } from "react-icons/md";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 
-const FilterItem = ({ label }) => {
+const FilterItem = ({ label, filterArr, setFilterArr }) => {
   const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
     setChecked(!checked);
   };
+
+  useEffect(() => {
+    for (let item in filterArr) {
+      if (item == label) {
+        filterArr[item] = checked;
+      }
+    }
+
+    console.log("filter", filterArr);
+  }, [checked]);
 
   return (
     <div onClick={() => handleChange()}>
