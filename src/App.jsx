@@ -1,13 +1,21 @@
-import "./App.css";
+import { useState, useEffect } from "react";
 import Input from "./components/Input";
 import styled from "styled-components";
+import FilterList from "./components/FilterList";
+import ProductsList from "./components/ProductsList";
 
 function App() {
+  const [responseData, setResponseData] = useState("");
+  const [priceValue, setPriceValue] = useState(0);
+
   return (
     <div>
       <AppTitle>Skincare Screener</AppTitle>
+
       <SearchContainer>
-        <Input />
+        <Input responseData={responseData} setResponseData={setResponseData} />
+        <FilterList priceValue={priceValue} setPriceValue={setPriceValue} />
+        <ProductsList responseData={responseData} />
       </SearchContainer>
     </div>
   );

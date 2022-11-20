@@ -37,7 +37,7 @@ const GridWrapper = styled.div`
 const CardWrapper = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 3px 5px;
+  padding: 10px;
   @media only screen and (min-width: 750px) {
     max-width: 800px;
   }
@@ -52,8 +52,8 @@ const ProductWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   background: white;
-  width: 150px;
-  height: 120px;
+  width: 130px;
+  height: 130px;
 
   display: flex;
 

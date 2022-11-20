@@ -19,7 +19,7 @@ const Circle = () => {
 
             textColor: "#0a7cff",
 
-            backgroundColor: "ightblue",
+            // backgroundColor: "lightblue",
           })}
         />
       </CircleWrapper>
