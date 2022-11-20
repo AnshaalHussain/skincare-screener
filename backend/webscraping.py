@@ -14,12 +14,39 @@ def find_image(driver):
 
     src_tag = image_div.find_element(By.TAG_NAME, "img")
     src_image = src_tag.get_attribute('src')
+
     return src_image
+
+
+def find_ingredients():
+    website = 'https://incidecoder.com/products/canmake-mermaid-skin-gel-uv-spf-50-pa-01-clear'
+
+    path = '/Users/anshaal/Downloads/chromedriver'
+
+    driver = webdriver.Chrome(path)
+
+    driver.get(website)
+
+    ingredients_div = driver.find_element_by_id(
+        "ingredlist-short")
+
+    return ingredients_div.text.split(" ")
+
+
+def find_highlights(driver):
+    results_arr = []
+    highlights_div = driver.find_elements_by_class_name(
+        "hashtag")
+    for item in highlights_div:
+        results_arr.append(item.text)
+        # print("IMAGE DIV", item.text)
+
+    return results_arr
 
 
 def product_search(search_query):
     website = 'https://incidecoder.com/'
-    # website = "https://incidecoder.com/products/hada-labo-rohto-mentholatum-hada-labo-gokujyun-premium-emulsion"
+
     path = '/Users/anshaal/Downloads/chromedriver'
 
     driver = webdriver.Chrome(path)
@@ -84,6 +111,7 @@ def product_search(search_query):
     # time.sleep(1)
     # time.sleep(5)
     # print("RESULTS ARR", results_arr)
+
     driver.quit()
     return results_arr
     # name = link.text
@@ -115,3 +143,7 @@ def product_search(search_query):
 
 
 # product_search("hada labo")
+
+find_ingredients()
+
+# find_highlights()
