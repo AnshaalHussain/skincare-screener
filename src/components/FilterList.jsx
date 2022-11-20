@@ -1,11 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FilterItem from "./FilterItem";
 import styled from "styled-components";
 import PriceSlider from "./PriceSlider";
+import FilteringState from "../utiils/FilterByIngredients";
 
 const FilterList = ({ priceValue, setPriceValue }) => {
+  // handle toggle of price and ingredients lists
   const [ingredientsTab, setIngredientsTab] = useState(true);
   const [priceTab, setPriceTab] = useState(false);
+
+  const [filterArr, setFilterArr] = useState({});
 
   const ingredientList = [
     "alcohol-free",
@@ -13,6 +17,12 @@ const FilterList = ({ priceValue, setPriceValue }) => {
     "fragrance free",
     "panthenol",
   ];
+
+  useEffect(() => {
+    FilteringState(ingredientList, filterArr);
+
+    console.log("FilterObj", filterArr);
+  }, [filterArr]);
 
   const handleOpen = (value, setter) => {
     setter(!value);
@@ -27,7 +37,13 @@ const FilterList = ({ priceValue, setPriceValue }) => {
         {ingredientsTab ? (
           <GridContainer>
             {ingredientList.map((item) => {
-              return <FilterItem label={item} />;
+              return (
+                <FilterItem
+                  filterArr={filterArr}
+                  setFilterArr={setFilterArr}
+                  label={item}
+                />
+              );
             })}
           </GridContainer>
         ) : (
@@ -40,7 +56,7 @@ const FilterList = ({ priceValue, setPriceValue }) => {
 
         {priceTab ? (
           <div>
-            <PriceDisplay>${priceValue}</PriceDisplay>
+            <PriceDisplay> Up to ${priceValue}</PriceDisplay>
 
             <PriceSlider
               priceValue={priceValue}
