@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+// import { IoCheckboxOutline } from "react-icons/io";
+import { MdOutlineCheckBox } from "react-icons/md";
+import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
 
 const FilterItem = ({ label }) => {
   const [checked, setChecked] = useState(false);
@@ -7,23 +10,30 @@ const FilterItem = ({ label }) => {
   const handleChange = () => {
     setChecked(!checked);
   };
+
   return (
-    <div>
-      <CheckBoxWrapper>
-        <label>
-          <input type="checkbox" checked={checked} onChange={handleChange} />
-          {label}
-        </label>
-      </CheckBoxWrapper>
+    <div onClick={() => handleChange()}>
+      <FilterItemContainer>
+        {checked ? (
+          <MdOutlineCheckBox size={"15px"} />
+        ) : (
+          <MdOutlineCheckBoxOutlineBlank size={"15px"} />
+        )}
+
+        <FilterHeader>{label}</FilterHeader>
+      </FilterItemContainer>
     </div>
   );
 };
 
 export default FilterItem;
 
-const CheckBoxWrapper = styled.div`
-  margin: 0 0.5em;
-  padding: 0 0.5em;
-  font-size: 10px;
-  line-height: 1;
+const FilterItemContainer = styled.div`
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+`;
+
+const FilterHeader = styled.div`
+  margin: 0.35em;
 `;

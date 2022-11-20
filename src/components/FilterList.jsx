@@ -1,16 +1,52 @@
-import React from "react";
+import { useState } from "react";
 import FilterItem from "./FilterItem";
 import styled from "styled-components";
+import PriceSlider from "./PriceSlider";
 
-const FilterList = () => {
+const FilterList = ({ priceValue, setPriceValue }) => {
+  const [ingredientsTab, setIngredientsTab] = useState(true);
+  const [priceTab, setPriceTab] = useState(false);
+
+  const ingredientList = [
+    "alcohol-free",
+    "centella",
+    "fragrance free",
+    "panthenol",
+  ];
+
+  const handleOpen = (value, setter) => {
+    setter(!value);
+  };
+
   return (
     <div>
       <FilterListContainer>
-        <GridContainer>
-          <FilterItem label={"alcohol-free"} />
-          <FilterItem label={"fragrance & essential oil free"} />
-          <FilterItem label={"centella"} />
-        </GridContainer>
+        <Header onClick={() => handleOpen(ingredientsTab, setIngredientsTab)}>
+          INGREDIENTS
+        </Header>
+        {ingredientsTab ? (
+          <GridContainer>
+            {ingredientList.map((item) => {
+              return <FilterItem label={item} />;
+            })}
+          </GridContainer>
+        ) : (
+          <div></div>
+        )}
+
+        <Header onClick={() => handleOpen(priceTab, setPriceTab)}>PRICE</Header>
+
+        {priceTab ? (
+          <div>
+            {priceValue ? priceValue : ""}
+            <PriceSlider
+              priceValue={priceValue}
+              setPriceValue={setPriceValue}
+            />
+          </div>
+        ) : (
+          <div></div>
+        )}
       </FilterListContainer>
     </div>
   );
@@ -21,6 +57,10 @@ export default FilterList;
 const GridContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  &:not(:last-child) {
+    margin-bottom: 1.5em;
+  }
 `;
 
 const FilterListContainer = styled.div`
@@ -29,4 +69,13 @@ const FilterListContainer = styled.div`
   border-radius: 7px;
   padding: 1rem;
   margin: 1rem;
+`;
+
+const Header = styled.div`
+  text-align: center;
+  font-weight: 400;
+  font-size: 0.85em;
+  padding: 0.45em;
+  margin-bottom: 10px;
+  border: solid grey 1px;
 `;

@@ -6,6 +6,7 @@ import ProductsList from "./components/ProductsList";
 
 function App() {
   const [responseData, setResponseData] = useState("");
+  const [priceValue, setPriceValue] = useState(0);
 
   return (
     <div>
@@ -13,7 +14,7 @@ function App() {
 
       <SearchContainer>
         <Input responseData={responseData} setResponseData={setResponseData} />
-        <FilterList />
+        <FilterList priceValue={priceValue} setPriceValue={setPriceValue} />
         <ProductsList responseData={responseData} />
       </SearchContainer>
     </div>
