@@ -34,11 +34,14 @@ const FilterList = ({ priceValue, setPriceValue }) => {
           <div></div>
         )}
 
-        <Header onClick={() => handleOpen(priceTab, setPriceTab)}>PRICE</Header>
+        <Header onClick={() => handleOpen(priceTab, setPriceTab)}>
+          PRICE RANGE
+        </Header>
 
         {priceTab ? (
           <div>
-            {priceValue ? priceValue : ""}
+            <PriceDisplay>${priceValue}</PriceDisplay>
+
             <PriceSlider
               priceValue={priceValue}
               setPriceValue={setPriceValue}
@@ -78,4 +81,8 @@ const Header = styled.div`
   padding: 0.45em;
   margin-bottom: 10px;
   border: solid grey 1px;
+`;
+
+const PriceDisplay = styled.div`
+  text-align: center;
 `;
