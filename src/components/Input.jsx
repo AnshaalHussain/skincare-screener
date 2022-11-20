@@ -3,9 +3,8 @@ import queries from "../services/queries/queries";
 import styled from "styled-components";
 import ProductsList from "./ProductsList";
 
-const Input = () => {
+const Input = ({ responseData, setResponseData }) => {
   const [inputText, setInputText] = useState("");
-  const [responseData, setResponseData] = useState("");
 
   useEffect(() => {
     console.log("responseData", responseData);
@@ -79,8 +78,6 @@ const Input = () => {
           {/* <button onClick={() => GetSkincareAPI()}>Send SkinCare Api</button> */}
           <button onClick={(e) => onSendText(e)}>Send Data</button>
         </SearchWrapper>
-
-        <ProductsList responseData={responseData} />
       </InputWrapper>
     </div>
   );

@@ -5,6 +5,7 @@ import ProductCards from "./ProductCards";
 const ProductsList = ({ responseData }) => {
   return (
     <div>
+      <TitleWrapper>Your Matches:</TitleWrapper>
       <MainPageWrapper>
         <div>
           {responseData ? (
@@ -19,7 +20,6 @@ const ProductsList = ({ responseData }) => {
             </div>
           ) : null}
         </div>
-
         <CardsListWrapper>
           <ProductCards />
         </CardsListWrapper>
@@ -41,4 +41,11 @@ const MainPageWrapper = styled.div`
 const CardsListWrapper = styled.div`
   // width: 95%;
   margin: 1rem;
+`;
+
+const TitleWrapper = styled.div`
+  margin: 0 1rem;
+  font-size: 15px;
+  font-weight: 700;
+  padding-top: 1rem;
 `;
