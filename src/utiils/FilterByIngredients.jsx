@@ -1,9 +1,12 @@
 import React from "react";
 
-const FilteringState = (ingredientList, filterArr) => {
+const FilteringState = (ingredientList) => {
+  let obj = {};
   ingredientList.map((item) => {
-    filterArr[item] = false;
+    obj[item] = false;
   });
+
+  return obj;
 };
 
 export default FilteringState;

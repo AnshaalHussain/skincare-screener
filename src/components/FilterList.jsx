@@ -2,31 +2,23 @@ import { useState, useEffect } from "react";
 import FilterItem from "./FilterItem";
 import styled from "styled-components";
 import PriceSlider from "./PriceSlider";
-import FilteringState from "../utiils/FilterByIngredients";
 
-const FilterList = ({ priceValue, setPriceValue }) => {
+const FilterList = ({
+  priceValue,
+  setPriceValue,
+  filterArr,
+  setFilterArr,
+  ingredientList,
+}) => {
   // handle toggle of price and ingredients lists
   const [ingredientsTab, setIngredientsTab] = useState(true);
   const [priceTab, setPriceTab] = useState(false);
 
-  const [filterArr, setFilterArr] = useState({});
-
-  const ingredientList = [
-    "alcohol-free",
-    "centella",
-    "fragrance free",
-    "panthenol",
-  ];
-
-  useEffect(() => {
-    FilteringState(ingredientList, filterArr);
-
-    console.log("FilterObj", filterArr);
-  }, [filterArr]);
-
   const handleOpen = (value, setter) => {
     setter(!value);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div>

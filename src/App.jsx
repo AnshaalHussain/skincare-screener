@@ -3,10 +3,21 @@ import Input from "./components/Input";
 import styled from "styled-components";
 import FilterList from "./components/FilterList";
 import ProductsList from "./components/ProductsList";
+import FilteringState from "./utiils/FilterByIngredients";
 
 function App() {
+  const ingredientList = [
+    "alcohol-free",
+    "centella",
+    "fragrance free",
+    "panthenol",
+  ];
+
+  let initialState = FilteringState(ingredientList);
+
   const [responseData, setResponseData] = useState("");
   const [priceValue, setPriceValue] = useState(0);
+  const [filterArr, setFilterArr] = useState(initialState);
 
   return (
     <div>
@@ -14,8 +25,18 @@ function App() {
 
       <SearchContainer>
         <Input responseData={responseData} setResponseData={setResponseData} />
-        <FilterList priceValue={priceValue} setPriceValue={setPriceValue} />
-        <ProductsList responseData={responseData} />
+        <FilterList
+          priceValue={priceValue}
+          setPriceValue={setPriceValue}
+          filterArr={filterArr}
+          setFilterArr={setFilterArr}
+          ingredientList={ingredientList}
+        />
+        <ProductsList
+          responseData={responseData}
+          filterArr={filterArr}
+          setFilterArr={setFilterArr}
+        />
       </SearchContainer>
     </div>
   );
