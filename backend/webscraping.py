@@ -105,7 +105,7 @@ def product_search(search_query):
     #     print(match.text.split())
 
 
-# product_search("hada labo")
+# product_search("canmake")
 
 # find_ingredients()
 

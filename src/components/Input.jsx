@@ -2,81 +2,75 @@ import { useState, useEffect } from "react";
 import queries from "../services/queries/queries";
 import styled from "styled-components";
 import ProductsList from "./ProductsList";
+import HandleValueSetter from "../utils/HandleValueSetter";
+import { useInput } from "../hooks/useInput";
+import { useValueSetter } from "../hooks/useValueSetter";
 
-const Input = ({ responseData, setResponseData }) => {
-  const [inputText, setInputText] = useState("");
+const Input = ({ submitText, setSubmitText }) => {
+  // const [inputFieldValue, setInputFieldValue] = useInput({
+  //   placeholder: "enter a product name",
+  // });
+  const [inputFieldValue, setInputFieldValue] = useState("");
 
   useEffect(() => {
-    console.log("responseData", responseData);
-  }, [responseData]);
+    console.log("submitText", submitText);
+  }, [submitText]);
 
-  const onChange = (e) => {
-    setInputText(e.target.value);
+  useEffect(() => {
+    console.log("input field val", inputFieldValue);
+  }, [inputFieldValue]);
+
+  // const onSubmit = useValueSetter;
+
+  const handleOnSubmit = () => {
+    setSubmitText(inputFieldValue);
   };
-
   // GET
-  const onSubmit = (e) => {
-    e.preventDefault();
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
 
-    queries
-      .getHomePage()
-      .then((res) => {
-        console.log("res GET", res);
-        setResponseData(res.data);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  };
+  //   queries
+  //     .getHomePage()
+  //     .then((res) => {
+  //       console.log("res GET", res);
+  //       setResponseData(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("err", err);
+  //     });
+  // };
 
   // POST
-  const onSendText = (e) => {
-    e.preventDefault();
-    queries
-      .postHomeRoute(inputText)
-      .then((res) => {
-        console.log("res POST", res);
-        setResponseData(res.data);
-        setInputText("");
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  };
-
-  const GetSkincareAPI = () => {
-    queries
-      .getSkinCareDatabase()
-      .then((res) => {
-        console.log("SKINCARE API", res);
-      })
-      .catch((err) => {
-        console.log("err", err);
-      });
-  };
-
-  const size = {
-    mobileS: "320px",
-    mobileM: "375px",
-    mobileL: "425px",
-    tablet: "768px",
-    laptop: "1024px",
-    laptopL: "1440px",
-    desktop: "2560px",
-  };
+  // const onSendText = (e) => {
+  //   e.preventDefault();
+  //   queries
+  //     .postHomeRoute(inputText)
+  //     .then((res) => {
+  //       console.log("res POST", res);
+  //       setResponseData(res.data);
+  //       setInputText("");
+  //     })
+  //     .catch((err) => {
+  //       console.log("err", err);
+  //     });
+  // };
 
   return (
     <div>
       <InputWrapper>
         <SearchWrapper>
+          {/* {inputField} */}
+
           <input
-            onChange={(e) => onChange(e)}
-            value={inputText}
+            value={inputFieldValue}
+            onChange={(e) => setInputFieldValue(e.target.value)}
             placeholder={"enter a product name"}
           />
+          <button onClick={() => handleOnSubmit()}>Send</button>
           {/* <button onClick={(e) => onSubmit(e)}>Fetch Data</button> */}
           {/* <button onClick={() => GetSkincareAPI()}>Send SkinCare Api</button> */}
-          <button onClick={(e) => onSendText(e)}>Send Data</button>
+          {/* <button onClick={(e) => onSendText(e)}>Send Data</button> */}
+          {/* <button onClick={onSubmit(inputFieldValue, () => setSubmitText)}> */}
         </SearchWrapper>
       </InputWrapper>
     </div>
