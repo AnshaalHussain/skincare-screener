@@ -1,5 +1,3 @@
-import React from "react";
-
 const FilteringState = (ingredientList) => {
   let obj = {};
   ingredientList.map((item) => {

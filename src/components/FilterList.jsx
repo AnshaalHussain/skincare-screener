@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import FilterItem from "./FilterItem";
 import styled from "styled-components";
+
+import FilterItem from "./FilterItem";
 import PriceSlider from "./PriceSlider";
+import HandleValueSetter from "../utils/HandleValueSetter";
 
 const FilterList = ({
   priceValue,
@@ -10,15 +12,13 @@ const FilterList = ({
   setFilterArr,
   ingredientList,
 }) => {
-  // handle toggle of price and ingredients lists
+  // Handle toggle open of lists
   const [ingredientsTab, setIngredientsTab] = useState(true);
   const [priceTab, setPriceTab] = useState(false);
 
-  const handleOpen = (value, setter) => {
-    setter(!value);
-  };
+  const handleOpen = HandleValueSetter;
 
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
 
   return (
     <div>
@@ -26,6 +26,8 @@ const FilterList = ({
         <Header onClick={() => handleOpen(ingredientsTab, setIngredientsTab)}>
           INGREDIENTS
         </Header>
+
+        {/* Map over Ingredients list */}
         {ingredientsTab ? (
           <GridContainer>
             {ingredientList.map((item) => {

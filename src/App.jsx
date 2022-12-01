@@ -3,9 +3,18 @@ import Input from "./components/Input";
 import styled from "styled-components";
 import FilterList from "./components/FilterList";
 import ProductsList from "./components/ProductsList";
-import FilteringState from "./utiils/FilterByIngredients";
+import FilteringState from "./utils/FilterByIngredients";
 
 function App() {
+  const [submitText, setSubmitText] = useState("");
+
+  const [responseData, setResponseData] = useState("");
+  const [priceValue, setPriceValue] = useState(0);
+
+  // useEffect(() => {
+  //   console.log("submt text", submitText);
+  // }, [submitText]);
+
   const ingredientList = [
     "alcohol-free",
     "centella",
@@ -14,9 +23,6 @@ function App() {
   ];
 
   let initialState = FilteringState(ingredientList);
-
-  const [responseData, setResponseData] = useState("");
-  const [priceValue, setPriceValue] = useState(0);
   const [filterArr, setFilterArr] = useState(initialState);
 
   return (
@@ -24,7 +30,10 @@ function App() {
       <AppTitle>Skincare Screener</AppTitle>
 
       <SearchContainer>
-        <Input responseData={responseData} setResponseData={setResponseData} />
+        {/* Search Bar */}
+        <Input submitText={submitText} setSubmitText={setSubmitText} />
+
+        {/* Filter Controls */}
         <FilterList
           priceValue={priceValue}
           setPriceValue={setPriceValue}
@@ -32,6 +41,7 @@ function App() {
           setFilterArr={setFilterArr}
           ingredientList={ingredientList}
         />
+        {/* Renders Product Matches */}
         <ProductsList
           responseData={responseData}
           filterArr={filterArr}

@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { MdOutlineCheckBox } from "react-icons/md";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
+import HandleValueSetter from "../utils/HandleValueSetter";
 
 const FilterItem = ({ label, filterArr, setFilterArr }) => {
   const [checked, setChecked] = useState(false);
 
-  const handleChange = () => {
-    setChecked(!checked);
-  };
+  const handleOnCheck = HandleValueSetter;
 
   const updateCheckedState = () => {
     for (let item in filterArr) {
@@ -25,7 +24,8 @@ const FilterItem = ({ label, filterArr, setFilterArr }) => {
   }, [checked]);
 
   return (
-    <div onClick={() => handleChange()}>
+    // Render checkbox and handle it's state updates when checked
+    <div onClick={() => handleOnCheck(checked, setChecked)}>
       <FilterItemContainer>
         {checked ? (
           <MdOutlineCheckBox size={"15px"} />

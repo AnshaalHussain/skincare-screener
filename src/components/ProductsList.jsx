@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useSkincareProducts } from "../hooks/useSkincareProducts";
 import ProductCards from "./ProductCards";
 
 const ProductsList = ({ responseData, filterArr }) => {
   const [trueIngredients, setTrueIngredients] = useState([]);
+
+  const { products } = useSkincareProducts("");
 
   // const TrueArr = () => {
   //   let newArr = [];
