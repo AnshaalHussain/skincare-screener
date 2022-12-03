@@ -4,6 +4,8 @@ import styled from "styled-components";
 import FilterList from "./components/FilterList";
 import ProductsList from "./components/ProductsList";
 import FilteringState from "./utils/FilterByIngredients";
+import { useSkincareProducts } from "./hooks/useSkincareProducts";
+import useTrueIngredients from "./hooks/useTrueIngredients";
 
 function App() {
   const [submitText, setSubmitText] = useState("");
@@ -18,12 +20,23 @@ function App() {
   const ingredientList = [
     "alcohol-free",
     "centella",
-    "fragrance free",
+    "fragrance-free",
     "panthenol",
+    "Lacryma-Jobi",
+    "Water",
   ];
 
   let initialState = FilteringState(ingredientList);
   const [filterArr, setFilterArr] = useState(initialState);
+
+  // const { products } = useSkincareProducts(submitText);
+  const { products } = useSkincareProducts(submitText, setSubmitText);
+
+  const { ingredientsArr } = useTrueIngredients(filterArr);
+
+  // useEffect(() => {
+  //   console.log("ingArr", ingredientsArr);
+  // }, [ingredientsArr]);
 
   return (
     <div>
@@ -43,9 +56,12 @@ function App() {
         />
         {/* Renders Product Matches */}
         <ProductsList
+          submitText={submitText}
           responseData={responseData}
           filterArr={filterArr}
           setFilterArr={setFilterArr}
+          productsData={products}
+          ingredientsArr={ingredientsArr}
         />
       </SearchContainer>
     </div>

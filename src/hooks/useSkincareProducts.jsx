@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export const useSkincareProducts = (text) => {
+export const useSkincareProducts = (text, setSubmitText) => {
   const [products, setProducts] = useState([]);
   const url = "http://127.0.0.1:5000";
 
@@ -15,8 +15,10 @@ export const useSkincareProducts = (text) => {
   };
 
   useEffect(() => {
-    if (text) {
+    let newText = text.trim();
+    if (newText) {
       fetchProducts();
+      setSubmitText("");
     }
   }, [text]);
 

@@ -7,18 +7,15 @@ import { useInput } from "../hooks/useInput";
 import { useValueSetter } from "../hooks/useValueSetter";
 
 const Input = ({ submitText, setSubmitText }) => {
-  // const [inputFieldValue, setInputFieldValue] = useInput({
-  //   placeholder: "enter a product name",
-  // });
   const [inputFieldValue, setInputFieldValue] = useState("");
 
-  useEffect(() => {
-    console.log("submitText", submitText);
-  }, [submitText]);
+  // useEffect(() => {
+  //   console.log("submitText", submitText);
+  // }, [submitText]);
 
-  useEffect(() => {
-    console.log("input field val", inputFieldValue);
-  }, [inputFieldValue]);
+  // useEffect(() => {
+  //   console.log("input field val", inputFieldValue);
+  // }, [inputFieldValue]);
 
   // const onSubmit = useValueSetter;
 

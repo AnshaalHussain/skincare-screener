@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-const Circle = () => {
-  const percentage = 78;
+const Circle = ({ rating }) => {
+  const percentage = rating;
   return (
     <div>
       <CircleWrapper>
@@ -12,7 +12,6 @@ const Circle = () => {
           value={percentage}
           text={`${percentage}%`}
           styles={buildStyles({
-            // rotation: 0.25,
             strokeLinecap: "butt",
             textSize: "1.8em",
             pathTransitionDuration: 0.5,
