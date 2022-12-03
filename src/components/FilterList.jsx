@@ -1,18 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 import FilterItem from "./FilterItem";
-import PriceSlider from "./PriceSlider";
 import HandleValueSetter from "../utils/HandleValueSetter";
 
-const FilterList = ({
-  priceValue,
-  setPriceValue,
-  filterArr,
-  setFilterArr,
-  ingredientList,
-}) => {
-  // Handle toggle open of lists
+const FilterList = ({ filterArr, setFilterArr, ingredientList }) => {
+  // Handle toggling open of lists
   const [ingredientsTab, setIngredientsTab] = useState(true);
 
   const handleOpen = HandleValueSetter;
@@ -71,8 +64,4 @@ const Header = styled.div`
   padding: 0.45em;
   margin-bottom: 10px;
   border: solid grey 1px;
-`;
-
-const PriceDisplay = styled.div`
-  text-align: center;
 `;

@@ -17,8 +17,6 @@ const Circle = ({ rating }) => {
             pathTransitionDuration: 0.5,
 
             textColor: "#0a7cff",
-
-            // backgroundColor: "lightblue",
           })}
         />
       </CircleWrapper>
