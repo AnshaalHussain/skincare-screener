@@ -13,10 +13,6 @@ function App() {
   const [responseData, setResponseData] = useState("");
   const [priceValue, setPriceValue] = useState(0);
 
-  // useEffect(() => {
-  //   console.log("submt text", submitText);
-  // }, [submitText]);
-
   const ingredientList = [
     "alcohol-free",
     "centella",
@@ -27,17 +23,12 @@ function App() {
   ];
 
   let initialState = FilteringState(ingredientList);
+
   const [filterArr, setFilterArr] = useState(initialState);
 
-  // const { products } = useSkincareProducts(submitText);
   const { products } = useSkincareProducts(submitText, setSubmitText);
 
   const { ingredientsArr } = useTrueIngredients(filterArr);
-
-  // useEffect(() => {
-  //   console.log("ingArr", ingredientsArr);
-  // }, [ingredientsArr]);
-
   return (
     <div>
       <AppTitle>Skincare Screener</AppTitle>

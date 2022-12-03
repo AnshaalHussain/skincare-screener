@@ -14,11 +14,8 @@ const FilterList = ({
 }) => {
   // Handle toggle open of lists
   const [ingredientsTab, setIngredientsTab] = useState(true);
-  const [priceTab, setPriceTab] = useState(false);
 
   const handleOpen = HandleValueSetter;
-
-  // useEffect(() => {}, []);
 
   return (
     <div>
@@ -40,23 +37,6 @@ const FilterList = ({
               );
             })}
           </GridContainer>
-        ) : (
-          <div></div>
-        )}
-
-        <Header onClick={() => handleOpen(priceTab, setPriceTab)}>
-          PRICE RANGE
-        </Header>
-
-        {priceTab ? (
-          <div>
-            <PriceDisplay> Up to ${priceValue}</PriceDisplay>
-
-            <PriceSlider
-              priceValue={priceValue}
-              setPriceValue={setPriceValue}
-            />
-          </div>
         ) : (
           <div></div>
         )}
