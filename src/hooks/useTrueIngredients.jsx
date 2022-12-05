@@ -1,13 +1,18 @@
-import React from "react";
+import { useState, useEffect } from "react";
 
-const useTrueIngredients = (filterArr, setTrueIngredients, checked) => {
-  let ingredientsArr = [];
+const useTrueIngredients = (filterArr) => {
+  const [ingredientsArr, setIngredientsArr] = useState([]);
 
-  for (let ingredient in filterArr) {
-    if (filterArr[ingredient] == true) {
-      ingredientsArr.push(ingredient);
+  useEffect(() => {
+    let newIngredientsArr = [];
+    for (let ingredient in filterArr) {
+      if (filterArr[ingredient].checked === true) {
+        newIngredientsArr.push(filterArr[ingredient].name);
+
+        setIngredientsArr(newIngredientsArr);
+      }
     }
-  }
+  }, [filterArr]);
 
   return { ingredientsArr };
 };

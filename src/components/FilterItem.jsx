@@ -10,22 +10,25 @@ const FilterItem = ({ label, filterArr, setFilterArr }) => {
   const handleOnCheck = HandleValueSetter;
 
   const updateCheckedState = () => {
-    for (let item in filterArr) {
-      if (item == label) {
-        let newFilterArr = { ...filterArr };
-        newFilterArr[item] = checked;
-        setFilterArr(newFilterArr);
-      }
-    }
-  };
+    handleOnCheck(checked, setChecked);
+    setChecked(!checked);
 
-  useEffect(() => {
-    updateCheckedState();
-  }, [checked]);
+    // update checked to true in filterArr
+
+    setFilterArr((current) =>
+      current.map((obj) => {
+        if (obj.name === label) {
+          return { ...obj, checked: !checked };
+        }
+
+        return obj;
+      })
+    );
+  };
 
   return (
     // Render checkbox and handle it's state updates when checked
-    <div onClick={() => handleOnCheck(checked, setChecked)}>
+    <div onClick={() => updateCheckedState()}>
       <FilterItemContainer>
         {checked ? (
           <MdOutlineCheckBox size={"15px"} />

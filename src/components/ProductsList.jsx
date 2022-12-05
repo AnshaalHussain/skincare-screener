@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
 import styled from "styled-components";
 import useRatedList from "../hooks/useRatedList";
-import ProductCards from "./ProductCards";
 
-const ProductsList = ({ productsData, ingredientsArr }) => {
-  const { ratedList } = useRatedList(productsData, ingredientsArr);
+const ProductsList = ({ filterArr, productsData, ingredientsArr }) => {
+  // useRatedList hook: maps over each ingredients and checks whether it's included in each product, returns the mapped ProductCards components that have the final ratings and product data
+  const { ratedList } = useRatedList(productsData, ingredientsArr, filterArr);
 
   return (
     <div>
       <TitleWrapper>Your Matches:</TitleWrapper>
       <MainPageWrapper>
         <div>{ratedList ? ratedList : ""}</div>
-        {/* <CardsListWrapper>
-          <ProductCards rating={4} />
-        </CardsListWrapper> */}
       </MainPageWrapper>
     </div>
   );
