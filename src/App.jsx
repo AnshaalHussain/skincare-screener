@@ -1,53 +1,56 @@
-import { useState, useEffect } from "react";
-import Input from "./components/Input";
+import { useState } from "react";
 import styled from "styled-components";
+
+import Input from "./components/Input";
 import FilterList from "./components/FilterList";
 import ProductsList from "./components/ProductsList";
-import FilteringState from "./utils/FilterByIngredients";
+import FilterInput from "./components/FilterInput";
+import { useSkincareProducts } from "./hooks/useSkincareProducts";
+import useTrueIngredients from "./hooks/useTrueIngredients";
 
 function App() {
+  // the search input query to send to backend
   const [submitText, setSubmitText] = useState("");
 
-  const [responseData, setResponseData] = useState("");
-  const [priceValue, setPriceValue] = useState(0);
+  // returns products data from backend using search input query
+  const { products } = useSkincareProducts(submitText, setSubmitText);
 
-  // useEffect(() => {
-  //   console.log("submt text", submitText);
-  // }, [submitText]);
+  // object containing filter ingredient names and their checked states
+  const [filterArr, setFilterArr] = useState([
+    { name: "alcohol-free", checked: false },
+    { name: "fragrance-free", checked: false },
+    { name: "green tea", checked: false },
+    { name: "jojoba oil", checked: false },
+    { name: "ginseng", checked: false },
+    { name: "tea tree", checked: false },
+  ]);
 
-  const ingredientList = [
-    "alcohol-free",
-    "centella",
-    "fragrance free",
-    "panthenol",
-  ];
-
-  let initialState = FilteringState(ingredientList);
-  const [filterArr, setFilterArr] = useState(initialState);
+  // this is the array of ingredients that have been set to true: meant for determining rating % for products
+  const { ingredientsArr } = useTrueIngredients(filterArr);
 
   return (
     <div>
       <AppTitle>Skincare Screener</AppTitle>
 
-      <SearchContainer>
+      <MainContainer>
         {/* Search Bar */}
         <Input submitText={submitText} setSubmitText={setSubmitText} />
 
-        {/* Filter Controls */}
-        <FilterList
-          priceValue={priceValue}
-          setPriceValue={setPriceValue}
-          filterArr={filterArr}
-          setFilterArr={setFilterArr}
-          ingredientList={ingredientList}
-        />
+        {/* Filter */}
+        <FilterList filterArr={filterArr} setFilterArr={setFilterArr} />
+
+        {/* Filter Input Bar */}
+        <FilterInput filterArr={filterArr} setFilterArr={setFilterArr} />
+
         {/* Renders Product Matches */}
         <ProductsList
-          responseData={responseData}
+          submitText={submitText}
           filterArr={filterArr}
           setFilterArr={setFilterArr}
+          productsData={products}
+          ingredientsArr={ingredientsArr}
         />
-      </SearchContainer>
+      </MainContainer>
     </div>
   );
 }
@@ -63,7 +66,7 @@ const AppTitle = styled.div`
   padding-top: 1rem;
 `;
 
-const SearchContainer = styled.div`
+const MainContainer = styled.div`
   padding: 0 1em;
   margin: 0 1rem;
 `;

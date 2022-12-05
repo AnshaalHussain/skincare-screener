@@ -37,7 +37,7 @@ def find_highlights(driver):
 def product_search(search_query):
     website = 'https://incidecoder.com/'
 
-    path = '/Users/anshaal/Downloads/chromedriver'
+    path = '/Users/anshaal/Downloads/chromedriver_2'
 
     driver = webdriver.Chrome(path)
 
@@ -105,7 +105,7 @@ def product_search(search_query):
     #     print(match.text.split())
 
 
-# product_search("canmake")
+product_search("canmake")
 
 # find_ingredients()
 

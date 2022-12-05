@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Circle from "./Circle";
 
-const ProductCards = ({ image, title }) => {
+const ProductCards = ({ image, title, rating, url }) => {
   const sampleImage =
     "https://incidecoder-content.storage.googleapis.com/5b9a5434-b18b-4b6a-8ae0-d23d62ad2c76/products/canmake-cream-cheek/canmake-cream-cheek_front_photo_original.jpeg";
   return (
@@ -11,7 +11,9 @@ const ProductCards = ({ image, title }) => {
         <GridWrapper>
           <ProductWrapper>
             <TitleWrapper>
-              <p>{title || "Canmake Cream Cheek"}</p>
+              <a href={`${url}`} target="_blank" rel="noopener noreferrer">
+                <p>{title || "Canmake Cream Cheek"}</p>
+              </a>
             </TitleWrapper>
 
             <ImageWrapper>
@@ -19,7 +21,7 @@ const ProductCards = ({ image, title }) => {
             </ImageWrapper>
           </ProductWrapper>
           <CircleWrapper>
-            <Circle />
+            <Circle rating={rating} />
           </CircleWrapper>
         </GridWrapper>
       </CardWrapper>
@@ -48,6 +50,15 @@ const ProductWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;
 
 const ImageWrapper = styled.div`
