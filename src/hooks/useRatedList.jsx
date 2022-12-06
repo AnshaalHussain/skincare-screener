@@ -57,7 +57,7 @@ const useRatedList = (productsData, ingredientsArr, filterArr) => {
           }
         }
 
-        // calculate percentage match based on filters
+        // calculate rating percentage based on filters
 
         let filteredRating;
 

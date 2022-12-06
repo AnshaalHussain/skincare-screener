@@ -1,4 +1,6 @@
 import { useState } from "react";
+import styled from "styled-components";
+import { THEMES } from "../styles/colors";
 
 const FilterInput = ({ setFilterArr }) => {
   const [inputFieldValue, setInputFieldValue] = useState();
@@ -14,14 +16,55 @@ const FilterInput = ({ setFilterArr }) => {
 
   return (
     <div>
-      <input
-        value={inputFieldValue}
-        onChange={(e) => setInputFieldValue(e.target.value)}
-        placeholder={"enter an ingredient"}
-      />
-      <button onClick={() => handleOnClick()}>Add</button>
+      <SearchWrapper>
+        <input
+          value={inputFieldValue}
+          onChange={(e) => setInputFieldValue(e.target.value)}
+          placeholder={"add an ingredient"}
+        />
+        <StyledButton onClick={() => handleOnClick()}>+</StyledButton>
+      </SearchWrapper>
     </div>
   );
 };
 
 export default FilterInput;
+
+const InputWrapper = styled.div``;
+
+const SearchWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  width: 70%;
+  // margin: auto;
+  input {
+    padding: 6px 17px;
+    margin: 10px 2px;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    appearance: none;
+    border: solid grey 1px;
+  }
+
+  input:focus {
+  }
+`;
+
+const StyledButton = styled.button`
+  text-decoration: none;
+  background: ${THEMES.PRIMARY};
+  border: 2px solid ${THEMES.TERTIARY};
+  border-radius: 5px;
+  width: 20%;
+  font-size: 1.2em;
+  color: #fff;
+  text-align: center;
+  height: 1.8rem;
+  margin: 0px 3px;
+`;

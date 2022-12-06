@@ -1,8 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { THEMES } from "../styles/colors";
 
 import HandleValueSetter from "../utils/HandleValueSetter";
 import useFilterList from "../hooks/useFilterList";
+import FilterInput from "./FilterInput";
 
 const FilterList = ({ filterArr, setFilterArr }) => {
   // Handle toggling open of lists
@@ -17,8 +19,9 @@ const FilterList = ({ filterArr, setFilterArr }) => {
     <div>
       <FilterListContainer>
         <Header onClick={() => handleOpen(ingredientsTab, setIngredientsTab)}>
-          INGREDIENTS
+          INGREDIENTS FILTER
         </Header>
+        <FilterInput filterArr={filterArr} setFilterArr={setFilterArr} />
 
         <div>{ingredientsAddedList ? ingredientsAddedList : ""}</div>
       </FilterListContainer>
@@ -33,14 +36,22 @@ const FilterListContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 7px;
   padding: 1rem;
-  margin: 1rem;
+  margin: 0.5rem 1rem;
+  background: #fff;
 `;
 
 const Header = styled.div`
   text-align: center;
-  font-weight: 400;
-  font-size: 0.85em;
-  padding: 0.45em;
-  margin-bottom: 10px;
-  border: solid grey 1px;
+  font-weight: 700;
+  font-size: 0.75em;
+  color: grey;
+  line-height: 1.95em;
+  padding: 0.15em;
+  width: 95%;
+  margin: auto;
+  box-shadow: 0 2px 1px 0 rgba(0, 0, 0, 0.2);
+
+  border: solid lightgrey 1px;
+  border-radius: 3px;
+  background-color: ${THEMES.TERTIARY};
 `;
