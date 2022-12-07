@@ -7,7 +7,8 @@ const useRatedList = (
   ingredientsArr,
   filterArr,
   error,
-  setError
+  setError,
+  submitText
 ) => {
   const [ratedList, setRatedList] = useState([]);
 
@@ -84,11 +85,12 @@ const useRatedList = (
         );
       });
 
-    if (ratedListArr.length === 0) {
-      console.log("error is true", error);
+    // if results array is empty, set error state to true
+
+    if (ratedListArr.length === 0 && submitText) {
+      console.log("running");
       setError(true);
     } else {
-      console.log("error is false", error);
       setRatedList(ratedListArr);
     }
   }, [ingredientsArr, productsData, filterArr]);

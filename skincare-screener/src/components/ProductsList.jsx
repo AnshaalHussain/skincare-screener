@@ -13,6 +13,7 @@ const ProductsList = ({
   loading,
   error,
   setError,
+  submitText,
 }) => {
   // useRatedList hook: maps over and checks whether each ingredient is included in each product, returns the mapped ProductCards components that have the final ratings and product data
 
@@ -21,7 +22,8 @@ const ProductsList = ({
     ingredientsArr,
     filterArr,
     error,
-    setError
+    setError,
+    submitText
   );
 
   return (
@@ -35,7 +37,6 @@ const ProductsList = ({
           ratedList
         ) : error === true ? (
           <InformModule>
-            {console.log("should run")}
             No matches were found
             <span>
               <IconContext.Provider value={{ size: "1.2em" }}>

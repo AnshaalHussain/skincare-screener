@@ -8,7 +8,7 @@ export const useSkincareProducts = (
   setLoading
 ) => {
   const [products, setProducts] = useState([]);
-  const url = "http://127.0.0.1:5000";
+  const url = process.env.REACT_APP_API_URL;
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -26,7 +26,7 @@ export const useSkincareProducts = (
     let newText = text.trim();
     if (newText) {
       fetchProducts();
-      setSubmitText("");
+      // setSubmitText("");
     }
   }, [text]);
 
