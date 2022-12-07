@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
+
 import { MdOutlineCheckBox } from "react-icons/md";
 import { MdOutlineCheckBoxOutlineBlank } from "react-icons/md";
+import { IconContext } from "react-icons";
 import HandleValueSetter from "../utils/HandleValueSetter";
 
 const FilterItem = ({ label, filterArr, setFilterArr }) => {
@@ -31,9 +33,11 @@ const FilterItem = ({ label, filterArr, setFilterArr }) => {
     <div onClick={() => updateCheckedState()}>
       <FilterItemContainer>
         {checked ? (
-          <MdOutlineCheckBox size={"15px"} />
+          <IconContext.Provider value={{ size: "1.3em" }}>
+            <MdOutlineCheckBox />
+          </IconContext.Provider>
         ) : (
-          <MdOutlineCheckBoxOutlineBlank size={"15px"} />
+          <MdOutlineCheckBoxOutlineBlank size={"1.3em"} />
         )}
 
         <FilterHeader>{label}</FilterHeader>
@@ -52,4 +56,5 @@ const FilterItemContainer = styled.div`
 
 const FilterHeader = styled.div`
   margin: 0.35em;
+  font-size: 1.05em;
 `;
