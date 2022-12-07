@@ -2,12 +2,19 @@ import { useState, useEffect } from "react";
 import ProductCards from "../components/ProductCards";
 import setTitleCase from "../utils/setTitleCase";
 
-const useRatedList = (productsData, ingredientsArr, filterArr) => {
+const useRatedList = (
+  productsData,
+  ingredientsArr,
+  filterArr,
+  error,
+  setError
+) => {
   const [ratedList, setRatedList] = useState([]);
 
   // TO DO: the rating logic here can utilize helper functions some more
 
   useEffect(() => {
+    setError(false);
     const ratedListArr =
       productsData &&
       productsData.map((product) => {
@@ -77,7 +84,13 @@ const useRatedList = (productsData, ingredientsArr, filterArr) => {
         );
       });
 
-    setRatedList(ratedListArr);
+    if (ratedListArr.length === 0) {
+      console.log("error is true", error);
+      setError(true);
+    } else {
+      console.log("error is false", error);
+      setRatedList(ratedListArr);
+    }
   }, [ingredientsArr, productsData, filterArr]);
 
   return { ratedList };

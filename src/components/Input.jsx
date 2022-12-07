@@ -81,4 +81,9 @@ const StyledButton = styled.button`
   text-align: center;
   height: 2rem;
   margin: 0px 3px;
+
+  &:hover {
+    background-color: ${THEMES.PRIMARY_DARK};
+    cursor: pointer;
+  }
 `;

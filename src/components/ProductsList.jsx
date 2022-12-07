@@ -1,28 +1,52 @@
+import { useState } from "react";
 import styled from "styled-components";
+import { IconContext } from "react-icons";
 
-import { THEMES } from "../styles/colors";
 import useRatedList from "../hooks/useRatedList";
-import ProductCards from "./ProductCards";
-import { AiOutlineSmile } from "react-icons/ai";
+import { AiOutlineSmile, AiOutlineFrown } from "react-icons/ai";
+import BarLoader from "react-spinners/BarLoader";
 
 const ProductsList = ({ filterArr, productsData, ingredientsArr, loading }) => {
   // useRatedList hook: maps over and checks whether each ingredient is included in each product, returns the mapped ProductCards components that have the final ratings and product data
 
-  const { ratedList } = useRatedList(productsData, ingredientsArr, filterArr);
+  const [error, setError] = useState(false);
+  const { ratedList } = useRatedList(
+    productsData,
+    ingredientsArr,
+    filterArr,
+    error,
+    setError
+  );
 
   return (
     <div>
       <MainPageWrapper>
         <TitleWrapper>SEARCH RESULTS:</TitleWrapper>
-        {loading ? "loading" : "not loading"}
+
+        <BarLoader loading={loading} size={150} />
 
         {ratedList.length > 0 ? (
-          ratedList
+          error === true ? (
+            <InformModule>
+              No Matches Found
+              <span>
+                <IconContext.Provider value={{ size: "1.2em" }}>
+                  <AiOutlineFrown />
+                </IconContext.Provider>
+              </span>
+            </InformModule>
+          ) : (
+            ratedList
+          )
         ) : (
           <InformModule>
-            Search for a product to view matches
+            {loading
+              ? "Searching... this may take a few mins"
+              : "Search for a product to view matches"}
             <span>
-              <AiOutlineSmile />
+              <IconContext.Provider value={{ size: "1.2em" }}>
+                <AiOutlineSmile />
+              </IconContext.Provider>
             </span>
           </InformModule>
         )}
@@ -83,6 +107,7 @@ const InformModule = styled.div`
   border-radius: 5px;
   padding: 1em;
   margin: auto;
+  margin-top: 1.5em;
 
   display: flex;
   justify-content: center;

@@ -72,8 +72,10 @@ const AppTitle = styled.div`
   padding-bottom: 0.5rem;
   padding-top: 1rem;
   color: #fff;
+
   @media only screen and (min-width: 768px) {
     padding-top: 2em;
+    font-size: 3em;
   }
 `;
 
