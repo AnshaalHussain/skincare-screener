@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import requests
 from views import views
 from flask_cors import CORS, cross_origin
 
