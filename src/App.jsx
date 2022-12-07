@@ -13,6 +13,7 @@ function App() {
   const [submitText, setSubmitText] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // returns products data from backend using search input query
   const { products } = useSkincareProducts(
@@ -42,7 +43,12 @@ function App() {
         <AppTitle>Skincare Screener</AppTitle>
 
         {/* Search Bar */}
-        <Input submitText={submitText} setSubmitText={setSubmitText} />
+        <Input
+          submitText={submitText}
+          setSubmitText={setSubmitText}
+          error={error}
+          setError={setError}
+        />
 
         {/* Filter */}
         <FilterList filterArr={filterArr} setFilterArr={setFilterArr} />
@@ -55,6 +61,8 @@ function App() {
           productsData={products}
           ingredientsArr={ingredientsArr}
           loading={loading}
+          error={error}
+          setError={setError}
         />
         {/* </MainContainer> */}
       </HeaderContainer>

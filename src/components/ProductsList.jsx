@@ -6,10 +6,16 @@ import useRatedList from "../hooks/useRatedList";
 import { AiOutlineSmile, AiOutlineFrown } from "react-icons/ai";
 import BarLoader from "react-spinners/BarLoader";
 
-const ProductsList = ({ filterArr, productsData, ingredientsArr, loading }) => {
+const ProductsList = ({
+  filterArr,
+  productsData,
+  ingredientsArr,
+  loading,
+  error,
+  setError,
+}) => {
   // useRatedList hook: maps over and checks whether each ingredient is included in each product, returns the mapped ProductCards components that have the final ratings and product data
 
-  const [error, setError] = useState(false);
   const { ratedList } = useRatedList(
     productsData,
     ingredientsArr,
@@ -26,18 +32,19 @@ const ProductsList = ({ filterArr, productsData, ingredientsArr, loading }) => {
         <BarLoader loading={loading} size={150} />
 
         {ratedList.length > 0 ? (
-          error === true ? (
-            <InformModule>
-              No Matches Found
-              <span>
-                <IconContext.Provider value={{ size: "1.2em" }}>
+          ratedList
+        ) : error === true ? (
+          <InformModule>
+            {console.log("should run")}
+            No matches were found
+            <span>
+              <IconContext.Provider value={{ size: "1.2em" }}>
+                <div style={{ marginTop: 5 }}>
                   <AiOutlineFrown />
-                </IconContext.Provider>
-              </span>
-            </InformModule>
-          ) : (
-            ratedList
-          )
+                </div>
+              </IconContext.Provider>
+            </span>
+          </InformModule>
         ) : (
           <InformModule>
             {loading
@@ -45,7 +52,9 @@ const ProductsList = ({ filterArr, productsData, ingredientsArr, loading }) => {
               : "Search for a product to view matches"}
             <span>
               <IconContext.Provider value={{ size: "1.2em" }}>
-                <AiOutlineSmile />
+                <div style={{ marginTop: 5 }}>
+                  <AiOutlineSmile />
+                </div>
               </IconContext.Provider>
             </span>
           </InformModule>

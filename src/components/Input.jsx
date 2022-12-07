@@ -2,11 +2,12 @@ import { useState } from "react";
 import styled from "styled-components";
 import { THEMES } from "../styles/colors";
 
-const Input = ({ setSubmitText }) => {
+const Input = ({ setSubmitText, error, setError }) => {
   const [inputFieldValue, setInputFieldValue] = useState("");
 
   const handleOnSubmit = () => {
     setSubmitText(inputFieldValue);
+    setError(false);
   };
 
   return (
