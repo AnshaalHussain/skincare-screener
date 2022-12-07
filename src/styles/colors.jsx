@@ -1,5 +1,5 @@
 export const THEMES = {
   PRIMARY: "#FF70A2",
-  SECONDARY: "#B2DAFA",
+  SECONDARY: "#0a7cff",
   TERTIARY: "#FFE0B5",
 };

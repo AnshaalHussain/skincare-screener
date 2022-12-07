@@ -39,7 +39,7 @@ const SearchWrapper = styled.div`
   justify-content: center;
 
   width: 70%;
-  // margin: auto;
+
   input {
     padding: 6px 17px;
     margin: 10px 2px;
@@ -53,6 +53,10 @@ const SearchWrapper = styled.div`
   }
 
   input:focus {
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 40%;
   }
 `;
 

@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+import { THEMES } from "../styles/colors";
 import Circle from "./Circle";
+import { HiOutlineQuestionMarkCircle } from "react-icons/hi";
 
 const ProductCards = ({ image, title, rating, url }) => {
   const sampleImage =
@@ -11,14 +13,24 @@ const ProductCards = ({ image, title, rating, url }) => {
         <GridWrapper>
           <ProductWrapper>
             <TitleWrapper>
-              <a href={`${url}`} target="_blank" rel="noopener noreferrer">
-                <p>{title || "Canmake Cream Cheek"}</p>
-              </a>
+              <p>{title || "Canmake Cream Cheek UV Gel"}</p>
             </TitleWrapper>
 
             <ImageWrapper>
               <img src={image || sampleImage} />
             </ImageWrapper>
+            <LearnMoreWrapper>
+              <a
+                href={url ? `${url}` : "https://incidecoder.com"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Learn more
+                <span>
+                  <HiOutlineQuestionMarkCircle />
+                </span>
+              </a>
+            </LearnMoreWrapper>
           </ProductWrapper>
           <CircleWrapper>
             <Circle rating={rating} />
@@ -39,9 +51,12 @@ const GridWrapper = styled.div`
 const CardWrapper = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+  border: 1px solid lightgrey;
   padding: 10px;
-  @media only screen and (min-width: 750px) {
-    max-width: 800px;
+  margin: 1em;
+
+  @media only screen and (min-width: 768px) {
+    min-width: 65%;
   }
 `;
 
@@ -59,36 +74,50 @@ const ProductWrapper = styled.div`
     text-decoration: none;
     cursor: pointer;
   }
+
+  @media only screen and (min-width: 768px) {
+    width: 65%;
+    margin: auto;
+  }
 `;
 
 const ImageWrapper = styled.div`
   background: white;
   width: 130px;
-  height: 130px;
+  height: 110px;
 
   display: flex;
 
   img {
-    width: 100%;
-    height: auto;
+    display: block;
     overflow: none;
+    max-width: 130px;
+    max-height: 130px;
+    width: auto;
+    height: auto;
+    margin: auto;
   }
 
-  @media only screen and (min-width: 750px) {
-    img {
-      max-width: 400px;
-      max-height: 350px;
-    }
-  }
+  // @media only screen and (min-width: 750px) {
+  //   img {
+  //     max-width: 400px;
+  //     max-height: 350px;
+  //   }
+  // }
 `;
 
 const TitleWrapper = styled.div`
-  font-size: 15px;
+  font-size: 1em;
   text-align: center;
-  // color: #eff7fa;
-  color: #0a7cff;
-  // background: #0a7cff;
-  max-width: 80%;
+  max-width: 90%;
+  font-weight: 400;
+  line-height: 1.1em;
+  a {
+    color: #0a7cff;
+  }
+  a:visited {
+    color: #0a7cff;
+  }
 `;
 
 const CircleWrapper = styled.div`
@@ -96,4 +125,24 @@ const CircleWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+
+const LearnMoreWrapper = styled.div`
+  color: ${THEMES.PRIMARY};
+  font-weight: 400;
+  font-size: 0.9em;
+  text-align: center;
+  padding-top: 1rem;
+  margin-top: 1em;
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+  }
+
+  a:visted {
+    text-decoration: none;
+    cursor: pointer;
+  }
 `;

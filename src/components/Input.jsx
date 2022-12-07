@@ -17,7 +17,7 @@ const Input = ({ setSubmitText }) => {
           <input
             value={inputFieldValue}
             onChange={(e) => setInputFieldValue(e.target.value)}
-            placeholder={"search for a product's name"}
+            placeholder={"search for product name"}
           />
           <StyledButton onClick={() => handleOnSubmit()}>Send</StyledButton>
         </SearchWrapper>
@@ -28,7 +28,16 @@ const Input = ({ setSubmitText }) => {
 
 export default Input;
 
-const InputWrapper = styled.div``;
+const InputWrapper = styled.div`
+  margin-top: 0.95em;
+
+  @media only screen and (min-width: 768px) {
+    width: 40%;
+    margin: auto;
+    padding-top: 0.75em;
+    padding-bottom: 2em;
+  }
+`;
 
 const SearchWrapper = styled.div`
   // border: solid blue 1px;
@@ -53,6 +62,10 @@ const SearchWrapper = styled.div`
 
   input:focus {
     // background-color: lightblue;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 65%;
   }
 `;
 

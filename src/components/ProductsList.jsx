@@ -1,15 +1,31 @@
 import styled from "styled-components";
-import useRatedList from "../hooks/useRatedList";
 
-const ProductsList = ({ filterArr, productsData, ingredientsArr }) => {
-  // useRatedList hook: maps over each ingredients and checks whether it's included in each product, returns the mapped ProductCards components that have the final ratings and product data
+import { THEMES } from "../styles/colors";
+import useRatedList from "../hooks/useRatedList";
+import ProductCards from "./ProductCards";
+import { AiOutlineSmile } from "react-icons/ai";
+
+const ProductsList = ({ filterArr, productsData, ingredientsArr, loading }) => {
+  // useRatedList hook: maps over and checks whether each ingredient is included in each product, returns the mapped ProductCards components that have the final ratings and product data
+
   const { ratedList } = useRatedList(productsData, ingredientsArr, filterArr);
 
   return (
     <div>
-      <TitleWrapper>Your Matches:</TitleWrapper>
       <MainPageWrapper>
-        <div>{ratedList ? ratedList : ""}</div>
+        <TitleWrapper>SEARCH RESULTS:</TitleWrapper>
+        {loading ? "loading" : "not loading"}
+
+        {ratedList.length > 0 ? (
+          ratedList
+        ) : (
+          <InformModule>
+            Search for a product to view matches
+            <span>
+              <AiOutlineSmile />
+            </span>
+          </InformModule>
+        )}
       </MainPageWrapper>
     </div>
   );
@@ -23,6 +39,12 @@ const MainPageWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 2em;
+
+  @media only screen and (min-width: 768px) {
+    width: 42%;
+    margin: auto;
+  }
 `;
 
 const CardsListWrapper = styled.div`
@@ -30,9 +52,48 @@ const CardsListWrapper = styled.div`
   margin: 1rem;
 `;
 
+// const TitleWrapper = styled.div`
+//   margin: 0 1rem;
+//   font-size: 1em;
+//   font-weight: 400;
+//   padding-top: 1rem;
+// `;
+
 const TitleWrapper = styled.div`
-  margin: 0 1rem;
-  font-size: 15px;
+  text-align: left;
   font-weight: 700;
-  padding-top: 1rem;
+  font-size: 0.85em;
+  letter-spacing: 0.8px;
+  color: grey;
+  line-height: 1.95em;
+  padding: 0.15em;
+  width: 95%;
+  margin-left: 2em;
+  border-radius: 5px;
+
+  @media only screen and (min-width: 768px) {
+    margin-left: 0em;
+  }
+`;
+
+const InformModule = styled.div`
+  color: grey;
+  font-weight: 400;
+  border: 1px lightgrey dashed;
+  border-radius: 5px;
+  padding: 1em;
+  margin: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    margin-left: 0.5em;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+    margin: 1em auto;
+  }
 `;
