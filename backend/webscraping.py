@@ -55,7 +55,7 @@ def product_search(search_query):
     # driver = webdriver.Chrome(
     #     ChromeDriverManager().install(), options=chromeOptions)
     driver = webdriver.Chrome(
-        "chromedriver.exe", options=chromeOptions)
+        executable_path="chromedriver.exe", options=chromeOptions)
 
     # go to url
     driver.get(website)
