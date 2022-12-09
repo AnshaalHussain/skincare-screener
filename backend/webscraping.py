@@ -41,18 +41,20 @@ def product_search(search_query):
     # settings to make headless chrome browser work
     chromeOptions = Options()
     # chromeOptions.headless = True
-    chromeOptions.add_argument('--no-sandbox')
     chromeOptions.add_argument('--headless')
-    chromeOptions.binary_location = "chromedriver"
+    chromeOptions.add_argument('--no-sandbox')
+    chromeOptions.add_argument('--disable-dev-shm-usage')
     chromeOptions.add_argument("--disable-gpu")
     chromeOptions.add_argument("--window-size=1920,1080")
-    chromeOptions.add_argument('--disable-dev-shm-usage')
     chromeOptions.add_argument(
         'user-agent="MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1"')
+
+    chromeOptions.binary_location = "chromedriver"
 
     driver = webdriver.Chrome(
         ChromeDriverManager().install(), options=chromeOptions)
 
+    print("driver", driver)
     # go to url
     driver.get(website)
 
