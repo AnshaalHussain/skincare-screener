@@ -43,6 +43,7 @@ def product_search(search_query):
     # chromeOptions.headless = True
     chromeOptions.add_argument('--headless')
     chromeOptions.add_argument('--no-sandbox')
+    chromeOptions.add_argument('--single-process')
     chromeOptions.add_argument('--disable-dev-shm-usage')
     chromeOptions.add_argument("--disable-gpu")
     chromeOptions.add_argument("--window-size=1920,1080")
@@ -51,10 +52,11 @@ def product_search(search_query):
 
     chromeOptions.binary_location = "headless-chromium.exe"
 
+    # driver = webdriver.Chrome(
+    #     ChromeDriverManager().install(), options=chromeOptions)
     driver = webdriver.Chrome(
-        ChromeDriverManager().install(), options=chromeOptions)
+        "chromedriver", options=chromeOptions)
 
-    print("driver", driver)
     # go to url
     driver.get(website)
 
