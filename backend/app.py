@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_cors import CORS, cross_origin
 
 from webscraping import product_search
@@ -10,14 +10,12 @@ CORS(app)
 @app.route("/")
 @cross_origin()
 def home():
-    return "<h1>Home</h1>."
+    return "Home"
 
 
-@app.route("/data", methods=['GET', 'POST'])
+@app.route("/data", methods=['POST'])
 @cross_origin()
 def data():
-    if request.method == 'GET':
-        return product_search("canmake cream cheek")
     if request.method == 'POST':
         # POST request body
         post_data = request.json['message']
