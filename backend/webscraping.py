@@ -40,8 +40,9 @@ def product_search(search_query):
 
     # settings to make headless chrome browser work
     chromeOptions = Options()
-    chromeOptions.headless = True
+    # chromeOptions.headless = True
     chromeOptions.add_argument('--no-sandbox')
+    chromeOptions.add_argument('--headless')
     chromeOptions.binary_location = "chromedriver"
     chromeOptions.add_argument("--disable-gpu")
     chromeOptions.add_argument("--window-size=1920,1080")
