@@ -3,4 +3,3 @@ Gunicorn
 flask_cors
 selenium
 webdriver_manager
-chromium-browser
