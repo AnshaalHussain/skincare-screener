@@ -3,3 +3,4 @@ Gunicorn
 flask_cors
 selenium
 webdriver_manager
+google-chrome-stable
