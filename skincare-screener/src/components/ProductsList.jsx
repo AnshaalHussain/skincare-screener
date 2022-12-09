@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { IconContext } from "react-icons";
 
@@ -81,18 +80,6 @@ const MainPageWrapper = styled.div`
   }
 `;
 
-const CardsListWrapper = styled.div`
-  // width: 95%;
-  margin: 1rem;
-`;
-
-// const TitleWrapper = styled.div`
-//   margin: 0 1rem;
-//   font-size: 1em;
-//   font-weight: 400;
-//   padding-top: 1rem;
-// `;
-
 const TitleWrapper = styled.div`
   text-align: left;
   font-weight: 700;
@@ -116,8 +103,8 @@ const InformModule = styled.div`
   border: 1px lightgrey dashed;
   border-radius: 5px;
   padding: 1em;
-  margin: auto;
-  margin-top: 1.5em;
+  margin: 1.5em auto;
+  min-height: 7em;
 
   display: flex;
   justify-content: center;

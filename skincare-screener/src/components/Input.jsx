@@ -41,7 +41,6 @@ const InputWrapper = styled.div`
 `;
 
 const SearchWrapper = styled.div`
-  // border: solid blue 1px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -59,10 +58,6 @@ const SearchWrapper = styled.div`
     font-size: 0.85em;
     appearance: none;
     border: 3px solid ${THEMES.TERTIARY};
-  }
-
-  input:focus {
-    // background-color: lightblue;
   }
 
   @media only screen and (min-width: 768px) {

@@ -97,13 +97,6 @@ const ImageWrapper = styled.div`
     height: auto;
     margin: auto;
   }
-
-  // @media only screen and (min-width: 750px) {
-  //   img {
-  //     max-width: 400px;
-  //     max-height: 350px;
-  //   }
-  // }
 `;
 
 const TitleWrapper = styled.div`
@@ -112,9 +105,11 @@ const TitleWrapper = styled.div`
   max-width: 90%;
   font-weight: 400;
   line-height: 1.1em;
+
   a {
     color: #0a7cff;
   }
+
   a:visited {
     color: #0a7cff;
   }
@@ -139,10 +134,14 @@ const LearnMoreWrapper = styled.div`
     text-decoration: none;
     cursor: pointer;
     color: inherit;
-  }
 
-  a:visted {
-    text-decoration: none;
-    cursor: pointer;
+    &:visted {
+      text-decoration: none;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
   }
 `;
