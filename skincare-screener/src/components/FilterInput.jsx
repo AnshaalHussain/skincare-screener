@@ -30,8 +30,6 @@ const FilterInput = ({ setFilterArr }) => {
 
 export default FilterInput;
 
-const InputWrapper = styled.div``;
-
 const SearchWrapper = styled.div`
   display: flex;
   flex-direction: row;

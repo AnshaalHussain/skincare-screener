@@ -1,12 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-export const useSkincareProducts = (
-  text,
-  setSubmitText,
-  loading,
-  setLoading
-) => {
+export const useSkincareProducts = (text, setLoading) => {
   const [products, setProducts] = useState([]);
   const url = process.env.REACT_APP_API_URL;
 
@@ -26,7 +21,6 @@ export const useSkincareProducts = (
     let newText = text.trim();
     if (newText) {
       fetchProducts();
-      // setSubmitText("");
     }
   }, [text]);
 

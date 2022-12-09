@@ -1,12 +1,14 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { THEMES } from "./styles/colors";
+import { defaultIngredients } from "./data/defaultIngredients";
 
 import Input from "./components/Input";
 import FilterList from "./components/FilterList";
 import ProductsList from "./components/ProductsList";
 import { useSkincareProducts } from "./hooks/useSkincareProducts";
 import useTrueIngredients from "./hooks/useTrueIngredients";
+import Footer from "./components/Footer";
 
 function App() {
   // the search input query to send to backend
@@ -25,47 +27,41 @@ function App() {
   );
 
   // object containing filter ingredient names and their checked states
-  const [filterArr, setFilterArr] = useState([
-    { name: "alcohol-free", checked: false },
-    { name: "fragrance-free", checked: false },
-    { name: "green tea", checked: false },
-    { name: "jojoba oil", checked: false },
-    { name: "ginseng", checked: false },
-    { name: "tea tree", checked: false },
-  ]);
+  const [filterArr, setFilterArr] = useState(defaultIngredients);
 
   // this is the array of ingredients that have been set to true - meant for determining rating % for products
   const { ingredientsArr } = useTrueIngredients(filterArr);
 
   return (
     <div>
-      {/* <MainContainer> */}
       <HeaderContainer>
-        <AppTitle>Skincare Screener</AppTitle>
+        <MainContainer>
+          <AppTitle>Skincare-Screener</AppTitle>
 
-        {/* Search Bar */}
-        <Input
-          submitText={submitText}
-          setSubmitText={setSubmitText}
-          error={error}
-          setError={setError}
-        />
+          {/* Search Bar */}
+          <Input
+            submitText={submitText}
+            setSubmitText={setSubmitText}
+            error={error}
+            setError={setError}
+          />
 
-        {/* Filter */}
-        <FilterList filterArr={filterArr} setFilterArr={setFilterArr} />
+          {/* Filter */}
+          <FilterList filterArr={filterArr} setFilterArr={setFilterArr} />
 
-        {/* Renders Product Matches */}
-        <ProductsList
-          submitText={submitText}
-          filterArr={filterArr}
-          setFilterArr={setFilterArr}
-          productsData={products}
-          ingredientsArr={ingredientsArr}
-          loading={loading}
-          error={error}
-          setError={setError}
-        />
-        {/* </MainContainer> */}
+          {/* Renders Product Matches */}
+          <ProductsList
+            submitText={submitText}
+            filterArr={filterArr}
+            setFilterArr={setFilterArr}
+            productsData={products}
+            ingredientsArr={ingredientsArr}
+            loading={loading}
+            error={error}
+            setError={setError}
+          />
+        </MainContainer>
+        <Footer />
       </HeaderContainer>
     </div>
   );
@@ -88,9 +84,9 @@ const AppTitle = styled.div`
   }
 `;
 
+// Pin footer to the bottom by making sure container takes up full width - footer height
 const MainContainer = styled.div`
-  padding: 0 1em;
-  margin: 0 1rem;
+  min-height: calc(100vh - 7vh);
 `;
 
 const HeaderContainer = styled.div`
@@ -103,6 +99,6 @@ const HeaderContainer = styled.div`
   box-shadow: inset 0px 18px 10px -7px rgba(0, 0, 0, 0.07);
 
   @media only screen and (min-width: 768px) {
-    height: 53vh;
+    height: 42vh;
   }
 `;
