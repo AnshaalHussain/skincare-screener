@@ -52,9 +52,9 @@ def product_search(search_query):
 
     chromeOptions.binary_location = "headless-chromium"
 
-    # driver = webdriver.Chrome(
-    #     ChromeDriverManager().install(), options=chromeOptions)
-    driver = webdriver.Chrome("chromedriver", options=chromeOptions)
+    driver = webdriver.Chrome(
+        ChromeDriverManager().install(), options=chromeOptions)
+    # driver = webdriver.Chrome("chromedriver", options=chromeOptions)
 
     # go to url
     driver.get(website)
