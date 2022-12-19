@@ -6,7 +6,7 @@ The Skincare Screener is a search engine developed to save you time ⏳ from end
 "Holy Grail" product that fits all your prerequisites. There isn't a product out there that can fulfill all your wildest dreams 
 (unfortunately 😔) but you CAN find one that best fits you much more easily now!
 
-The motivation behind this app was to help allow others to see compatiblility ratings based on the ingredients they contain. 
+The motivation behind this app was to help allow others to see compatiblility ratings based on the ingredients that the product contains. 
 All it takes is a quick glance to instantly identify which products are best suited for your needs.
 
 ## Built with:
