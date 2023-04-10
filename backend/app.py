@@ -25,8 +25,9 @@ def data():
     if request.method == 'POST':
         # POST request body
         post_data = request.json['message']
+        print("POST DATA", post_data)
         # return product_search(post_data)
-        return product_search("canmake cream cheek")
+        return product_search(post_data)
 
 
 if __name__ == '__main__':

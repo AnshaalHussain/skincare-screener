@@ -53,8 +53,8 @@ def product_search(search_query):
             ingredients_lst = ingredients.split(",")
 
             # Removes white space from each ingredient
-            for i in range(len(ingredients_lst)):
-                ingredients_lst[i] = ingredients_lst[i].strip()
+            for j in range(len(ingredients_lst)):
+                ingredients_lst[j] = ingredients_lst[j].strip()
 
             # Get image src...
             image_src = await page.Jeval("#product-main-image img", '(img) => img.src')
@@ -68,10 +68,10 @@ def product_search(search_query):
             # Strip white space, fix formatting:
             # formatted_highlights_list_array [ 'alcohol-free', 'fragrance & essentialoil-free' ]
             formatted_highlights_list_array = []
-            for i in range(len(highlights_list_array)):
-                if highlights_list_array[i] == "":
+            for k in range(len(highlights_list_array)):
+                if highlights_list_array[k] == "":
                     continue
-                highlight_copy = highlights_list_array[i].strip()
+                highlight_copy = highlights_list_array[k].strip()
                 formatted_highlights_list_array.append(highlight_copy)
 
             # add data to result_obj
@@ -86,7 +86,6 @@ def product_search(search_query):
 
         # close the browser
         await browser.close()
-
         return {"data": results_arr}
 
     return asyncio.new_event_loop().run_until_complete(main(search_query))

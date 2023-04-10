@@ -8,7 +8,9 @@ export const useSkincareProducts = (
   setLoading
 ) => {
   const [products, setProducts] = useState([]);
-  const url = process.env.REACT_APP_API_URL;
+  // const url = process.env.REACT_APP_API_URL;
+  const url = "http://127.0.0.1:5000";
+  console.log("URL", url);
 
   const fetchProducts = async () => {
     setLoading(true);
@@ -19,7 +21,9 @@ export const useSkincareProducts = (
 
     setLoading(false);
 
-    if (response && response.data) setProducts(response.data);
+    // POST results returns an object with key "data" and the data array as it's value, must access data through ```response.data.data```
+    // ex. {"data": results_arr}
+    if (response && response.data) setProducts(response.data.data);
   };
 
   useEffect(() => {
