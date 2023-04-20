@@ -86,6 +86,7 @@ def product_search(search_query):
 
         # close the browser
         await browser.close()
+        print(results_arr)
         return {"data": results_arr}
 
     return asyncio.new_event_loop().run_until_complete(main(search_query))
