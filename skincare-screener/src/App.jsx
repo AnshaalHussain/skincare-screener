@@ -14,7 +14,6 @@ function App() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log("error", error);
 
   // returns products data from backend using search input query
   const { products } = useSkincareProducts(

@@ -49,7 +49,8 @@ const useRatedList = (
 
         for (let ingredient in product.highlights) {
           let ingredientItem = product.highlights[ingredient];
-          let slicedString = ingredientItem.slice(1);
+          // Using puppeteer scraping now no longer requires slicing to get proper formatting for product highlights
+          let slicedString = ingredientItem;
 
           if (slicedString.includes("& essentialoil-free")) {
             slicedString = "fragrance-free";
@@ -88,7 +89,6 @@ const useRatedList = (
     // if results array is empty, set error state to true
 
     if (ratedListArr.length === 0 && submitText) {
-      console.log("running");
       setError(true);
     } else {
       setRatedList(ratedListArr);

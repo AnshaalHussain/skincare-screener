@@ -10,7 +10,7 @@ export const useSkincareProducts = (
   const [products, setProducts] = useState([]);
   // const url = process.env.REACT_APP_API_URL;
   const url = "http://127.0.0.1:5000";
-  console.log("URL", url);
+  // console.log("URL", url);
 
   const fetchProducts = async () => {
     setLoading(true);
