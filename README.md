@@ -5,14 +5,14 @@ https://skincare-screener.onrender.com/
 
 ## Introduction
 
-The Skincare Screener is a search engine developed to save you time ⏳ from endlessly searching through products to find the rare 
+Skincare-Screener is a search engine developed to save you time ⏳ from endlessly searching through products to find the rare 
 "Holy Grail" product that fits all your prerequisites. There isn't a product out there that can fulfill all your wildest dreams 
 (unfortunately 😔) but you CAN find one that best fits you much more easily now!
 
 The motivation behind this app was to help allow others to see compatiblility ratings based on the ingredients that the product contains. 
 All it takes is a quick glance to instantly identify which products are best suited for your needs.
 
-## Built with:
+## Built with
 
 * [React](https://reactjs.org/)
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
