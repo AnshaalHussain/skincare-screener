@@ -1,5 +1,8 @@
 # Skincare-Screener
 
+## Demo Link
+https://skincare-screener.onrender.com/
+
 ## Introduction
 
 The Skincare Screener is a search engine developed to save you time ⏳ from endlessly searching through products to find the rare 
@@ -15,6 +18,7 @@ All it takes is a quick glance to instantly identify which products are best sui
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/)
 * [Selenium](https://www.selenium.dev/documentation/webdriver/)
 * [Styled Components](https://styled-components.com/)
+* [Pyppeteer](https://miyakogi.github.io/pyppeteer/)
 
 ## Features
 * Any product can be searched for — results are fetched through the web scraping of [incidecoder.com](https://incidecoder.com/) for it's incredible 
