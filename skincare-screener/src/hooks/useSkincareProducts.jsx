@@ -8,10 +8,7 @@ export const useSkincareProducts = (
   setLoading
 ) => {
   const [products, setProducts] = useState([]);
-  // const url = process.env.REACT_APP_API_URL;
-  // const url = "http://127.0.0.1:5000";
   const url = "https://puppeteer-skincare-screener-server.onrender.com";
-  // console.log("URL", url);
 
   const fetchProducts = async () => {
     setLoading(true);
