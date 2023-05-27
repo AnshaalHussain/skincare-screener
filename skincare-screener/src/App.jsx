@@ -7,6 +7,9 @@ import FilterList from "./components/FilterList";
 import ProductsList from "./components/ProductsList";
 import { useSkincareProducts } from "./hooks/useSkincareProducts";
 import useTrueIngredients from "./hooks/useTrueIngredients";
+import SignIn from "./components/auth/SignIn";
+import SignUp from "./components/auth/SignUp";
+import { AuthDetails } from "./components/auth/AuthDetails";
 
 function App() {
   // the search input query to send to backend
@@ -39,6 +42,9 @@ function App() {
   return (
     <div>
       {/* <MainContainer> */}
+      <SignIn />
+      <SignUp />
+      <AuthDetails />
       <HeaderContainer>
         <AppTitle>Skincare Screener</AppTitle>
 
