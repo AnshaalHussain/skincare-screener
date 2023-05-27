@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
-const SignIn = () => {
+const SignIn = ({ toggleForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -34,6 +34,8 @@ const SignIn = () => {
         ></input>
         <button type="submit">Log In</button>
       </form>
+      <p>Have no account?</p>
+      <button onClick={() => toggleForm()}>Sign Up</button>
     </div>
   );
 };

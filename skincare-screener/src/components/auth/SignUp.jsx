@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { auth } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
-const SignUp = () => {
+const SignUp = ({ toggleForm }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,6 +16,7 @@ const SignUp = () => {
         console.log(error);
       });
   };
+
   return (
     <div>
       <form onSubmit={signUp}>
@@ -34,6 +35,8 @@ const SignUp = () => {
         ></input>
         <button type="submit">Sign Up</button>
       </form>
+      <p>Already have an account?</p>
+      <button onClick={() => toggleForm()}>Sign In</button>
     </div>
   );
 };
