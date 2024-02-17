@@ -27,17 +27,22 @@ const Footer = () => {
           Icons8
         </a>
       </IconReferenceContainer>
+        <CreditContainer>
+        <a href="github.com/mairfott">
+        Created by: Tulaib Hussain 
+        </a>
+        </CreditContainer>
     </FooterContainer>
   );
 };
 
 const FooterContainer = styled.div`
   background-color: lightgrey;
-  font-size: 0.8em;
-  letter-spacing: 0.5px;
+  font-size: 0.9em;
+  letter-spacing: 0.6px;
   padding: 0.3em 1.5em;
   min-height: 7vh;
-  margin-top: 0.2em;
+  margin-top: 0.3em;
 
   display: flex;
   flex-direction: row;
@@ -65,6 +70,25 @@ const IconReferenceContainer = styled.div`
     &:hover {
       text-decoration: none;
       color: black;
+    }
+  }
+`;
+
+const CreditContainer = styled.div`
+  color: black;
+  font-weight: 20;
+  font-size: 0.9em;
+
+  a {
+    text-decoration: none;
+
+    &:visited {
+      text-decoration: none;
+      color: black;
+    }
+
+    &:hover {
+      color: ${THEMES.PRIMARY_DARK};
     }
   }
 `;
